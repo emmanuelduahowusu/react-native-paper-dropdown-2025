@@ -26,9 +26,9 @@ A customizable accordion-style dropdown component for React Native, built using 
 
 Install the component via npm or yarn:
 
-```bash
+
 npm install react-native-paper
-npm install @your-library-name
+npm install react-native-paper-dropdown-2025
 
 
 ## Contributing
