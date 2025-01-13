@@ -24,11 +24,102 @@ A customizable accordion-style dropdown component for React Native, built using 
 
 ## Installation
 
-Install the component via npm or yarn:
-
-
+Install the component via npm:
 npm install react-native-paper
 npm install react-native-paper-dropdown-2025
+
+## Usage Example
+
+import { useEffect, useState } from "react";
+import { View, ScrollView,StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Dropdown from "react-native-paper-dropdown-2025";
+
+
+export default function login(){
+
+    const [domains, setDomains] = useState<{key:string; value:string}[]>([])
+    
+    const myoptions: {key:string; value:string}[] =[
+        {key: '.emporia.edu', value: 'Emporia State University'},
+        {key: '.school1.edu', value: 'School1 University'},
+        {key: '.school2.edu', value: 'School2 University'}
+      ]
+
+    useEffect(() => {
+        async function GetSchools() {
+          
+          setDomains(myoptions)
+        };  
+        GetSchools();
+    
+    }, [])
+
+    
+    const [selectedSchool, setSelectedSchool] = useState<string | null>(null);
+
+
+    const handleSelect = (option: { key: string; value: string }) => {
+        console.log(`Selected School: ${option.value} (Key: ${option.key})`);
+        console.log(option.key)
+        setSelectedSchool(option.value);
+      };
+
+
+
+return(
+
+<ScrollView>
+    <SafeAreaView>
+    <View>
+
+        <Dropdown
+    placeholder="Select your school"
+    options={domains}
+    iconcolor="lightblue"
+    iconname="school"
+    onSelect={handleSelect}
+    containerStyle={styles.container} //Optional field for style cusomization
+    accordionStyle={styles.accordion}//Optional field for style cusomization
+    listItemStyle={styles.listItem}//Optional field for style cusomization
+    titleStyle={styles.title}
+     />
+    </View>
+
+
+
+    </SafeAreaView>
+    
+</ScrollView>
+    
+
+);
+
+
+
+}
+
+const styles = StyleSheet.create({
+    container: {
+      justifyContent: 'center',
+    },
+    accordion: {
+      backgroundColor: 'white', 
+      borderWidth: 1,
+      borderColor: '#C5C19D',
+      borderRadius: 5,
+    },
+    listItem: {
+      paddingVertical: 10,
+      borderBottomWidth: 1,
+      borderBottomColor: '#ddd', 
+    },
+    title: {
+        color: '#000',
+      },
+  });
+
+
 
 
 ## Contributing
